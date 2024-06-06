@@ -1,0 +1,83 @@
+:root {
+	/* Design Tokens */
+	--t-white: #ffffff;
+	--t-fog: #f3f6f9;
+	--t-black: #1b1b1b;
+	--t-squid-ink: #282d30;
+	--t-grey: #adadad;
+	--t-neon: #00e9c2;
+
+	--t-poppins: "Poppins", "Helvetica", "Calibri", sans-serif;
+	--t-mono: "Space Mono", "Courier New", "Courier", monospace;
+
+	/* Utilities */
+	--c-text: var(--t-white);
+	--c-text-invert: var(--t-black);
+	--c-text-faded: var(--t-grey);
+
+	--c-border: var(--t-white);
+	--c-border-faded: color-mix(in srgb, var(--c-border), transparent 80%);
+	--c-highlight: var(--t-neon);
+
+	--c-bg-page: var(--t-black);
+	--c-bg-block: var(--t-squid-ink);
+
+	--f-sans: var(--t-poppins);
+	--f-mono: var(--t-mono);
+}
+
+html,
+body {
+	background-color: var(--c-bg-page);
+}
+
+*:not(input, textarea):focus-visible {
+	outline: 2px solid var(--c-highlight);
+	outline-offset: 0.25rem;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+	outline: none;
+	border: 1px solid var(--c-highlight);
+}
+
+/* Defaults */
+
+a {
+	color: var(--c-text);
+	text-underline-offset: 0.35em;
+}
+
+button {
+	cursor: pointer;
+}
+
+input {
+	height: 3rem;
+	padding-inline: 1rem;
+	background-color: transparent;
+	border: 1px solid var(--c-border);
+	color: var(--c-text);
+}
+
+input::placeholder {
+	color: var(--c-text-faded);
+}
+
+/* Utility Classes */
+
+.u-eyebrow {
+	font-family: var(--f-mono);
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	font-weight: 400;
+	line-height: 1.66;
+	color: var(--t-grey);
+}
+
+.u-title {
+	font-size: clamp(1.25rem, 0.8152rem + 2.1739vi, 2.5rem);
+	font-weight: 400;
+	line-height: 1.3;
+}
