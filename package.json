@@ -1,0 +1,22 @@
+{
+	"name": "reimagine-eleventy",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"build": "npx eleventy",
+		"dev": "npx eleventy --serve"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"@11ty/eleventy": "^2.0.1",
+		"dotenv": "^16.4.5",
+		"groq": "^3.45.0"
+	},
+	"dependencies": {
+		"@sanity/client": "^6.19.1",
+		"@sanity/image-url": "^1.0.2"
+	}
+}
