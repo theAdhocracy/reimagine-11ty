@@ -1,0 +1,15 @@
+---
+layout: layouts/layout.webc
+title: Appnovation
+---
+
+<section>
+	<p>Homepage</p>
+</section>
+
+<style webc:scoped>
+	p {
+		color: rebeccapurple;
+		font-size: 4rem;
+	}
+</style>

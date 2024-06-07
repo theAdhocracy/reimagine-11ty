@@ -1,6 +1,6 @@
 const groq = require("groq");
-const sanity = require("../utils/sanityClient.js");
-const sanityImage = require("../utils/sanityImage.js");
+const sanity = require("../../utils/sanityClient.js");
+const sanityImage = require("../../utils/sanityImage.js");
 
 async function getGlobalData() {
 	const filter = groq`*[_type == "global"]`;
