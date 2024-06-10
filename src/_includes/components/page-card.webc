@@ -1,0 +1,32 @@
+<article class="page-card" webc:root="override">
+	<img :src="imgSource" :alt="imgDesc" />
+	<p class="u-eyebrow" @text="category"></p>
+	<h2 @text="title"></h2>
+	<p @text="desc"></p>
+	<a :href="url">View case study</a>
+</article>
+
+<style>
+	.page-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		h2 {
+			font-weight: 400;
+			font-size: 1.25rem;
+			line-height: 1.3;
+		}
+
+		img {
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			margin-block-end: 0.5rem;
+		}
+
+		a {
+			font-size: 0.75rem;
+		}
+	}
+</style>
