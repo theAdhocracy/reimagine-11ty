@@ -3,13 +3,195 @@ layout: layouts/layout.webc
 title: Appnovation
 ---
 
-<section>
-	<p>Homepage</p>
-</section>
+<main class="homepage">
+	<section class="hero">
+		<right-down-arrow></right-down-arrow>
+		<h1
+			class="u-eyebrow"
+			@html="`${$data.homepage.title} <br> ${$data.homepage.subtitle}`"></h1>
+		<p @text="$data.homepage.copy"></p>
+		<div>
+			<a
+				class="u-cta"
+				href="link.url"
+				webc:for="link of $data.homepage.links"
+				@text="link.label"></a>
+		</div>
+	</section>
+	<section class="highlight-grid">
+		<template webc:type="11ty" 11ty:type="liquid">
+			{% for card in homepage.highlights %}
+			<page-card
+				@desc="{{ card.desc }}"
+				@title="{{ card.title }}"
+				@url="{{ card.url }}"
+				@category="{{ card.category }}"
+				@img-source="{{ card.thumb.src }}"
+				@img-desc="{{ card.thumb.alt }}"></page-card>
+			{% endfor %}
+		</template>
+	</section>
+	<template webc:type="11ty" 11ty:type="liquid">
+		{% for block in homepage.content %} {% if block.type == "banner" %}
+		<banner
+			@title="{{ block.title }}"
+			@copy="{{ block.copy }}"
+			@link-text="{{ block.link.label }}"
+			@link-url="{{ block.link.url }}"></banner>
+		{% endif %} {% if block.type == "logo_grid" %}
+		<grid-logo
+			@title="{{ block.title }}"
+			@subtitle="{{ block.subtitle }}"
+			@link-url="{{ block.link.url }}"
+			@link-text="{{ block.link.label }}">
+			{% for logo in block.logos %}
+			<li><img src="{{ logo.src }}" alt="{{ logo.alt }}" /></li>
+			{% endfor %}
+		</grid-logo>
+		{% endif %} {% if block.type == "revelation_grid" %}
+		<grid-revelation
+			@title="{{ block.title }}"
+			@subtitle="{{ block.subtitle }}"
+			@desc="{{ block.desc }}"
+			@link-url="{{ block.link.url }}"
+			@link-text="{{ block.link.label }}">
+			{% for card in block.cards %}
+			<section>
+				<h3>{{ card.title }}</h3>
+				<p id="`reveal-card-${card.id}`">{{ card.description }}</p>
+				<footer>
+					<button
+						type="button"
+						aria-label="Reveal description."
+						aria-expanded="false"
+						aria-controls="`reveal-card-${card.id}`">
+						<svg width="12" height="12" viewBox="0 0 12 12">
+							<path d="M6 0V6V12" stroke-width="1.52361" />
+							<path d="M12 6L-5.96046e-07 6" stroke-width="1.52361" />
+						</svg>
+					</button>
+				</footer>
+			</section>
+			{% endfor %}
+		</grid-revelation>
+		{% endif %} {% endfor %}
+	</template>
+</main>
 
-<style webc:scoped>
-	p {
-		color: rebeccapurple;
-		font-size: 4rem;
+<style>
+	.homepage {
+		--gutter: minmax(min(2rem, 4vw), 1fr);
+
+		display: grid;
+		grid-template-columns:
+			[full-start] var(--gutter) [content-start] min(
+				78rem,
+				max(calc(100% - 16vw), calc(100% - 8rem))
+			)
+			[content-end] var(--gutter) [full-end];
+		gap: 6rem min(4vw, 2rem);
+		padding: min(6rem, 12vw) 0;
+		margin: 0;
+
+		color: var(--c-text);
+		font-family: var(--f-sans);
+
+		h1 {
+			color: var(--c-text);
+		}
+
+		.hero {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+
+			svg {
+				display: none;
+			}
+
+			@media screen and (min-width: 500px) {
+				& {
+					grid-column: full;
+
+					display: grid;
+					grid-template-columns:
+						[breakout-start] var(--gutter) [content-start] repeat(
+							3,
+							min(24.7rem, calc((100% - 12rem) / 3))
+						)
+						[content-end] var(--gutter) [breakout-end];
+					gap: 2rem;
+
+					svg {
+						display: block;
+						grid-row: 1 / 3;
+						grid-column: 1 / 3;
+						align-self: end;
+						margin-block: 4.5rem -4rem;
+					}
+				}
+			}
+
+			@media screen and (min-width: 700px) {
+				& {
+					svg {
+						grid-row: 1 / 4;
+						margin-block: 4.5rem 0;
+					}
+				}
+			}
+
+			@media screen and (min-width: 1000px) {
+				& {
+					svg {
+						grid-row: 1 / 5;
+					}
+				}
+			}
+
+			h1 {
+				grid-row: 1;
+				grid-column: 2 / 3;
+				margin-block-start: 1rem;
+			}
+
+			p {
+				grid-column: 3 / 5;
+				place-self: end;
+				font-size: clamp(1.125rem, 0.125rem + 5vi, 4rem);
+				line-height: 1.3;
+				text-wrap: balance;
+			}
+
+			div {
+				grid-column: 3 / 5;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, 10.625rem);
+				gap: 1rem 2rem;
+				height: fit-content;
+
+				& > * {
+					width: 100%;
+				}
+			}
+
+			a:first-child {
+				--border-color: var(--c-highlight);
+				--bg-color: var(--c-highlight);
+				--text-color: var(--c-text-invert);
+				--active-bg-color: var(--c-highlight);
+				--lighten: 50%;
+			}
+		}
+
+		.highlight-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+			gap: 2rem;
+		}
+	}
+
+	.homepage > * {
+		grid-column: content;
 	}
 </style>
