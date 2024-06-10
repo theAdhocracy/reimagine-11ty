@@ -2,7 +2,9 @@ const sanity = require("../utils/sanityClient.js");
 const imageUrl = require("@sanity/image-url");
 
 function sanityImage(image, width = 960) {
-	image = image[0];
+	if (image[0]) {
+		image = image[0];
+	}
 
 	return {
 		src: `${imageUrl(sanity)
@@ -11,7 +13,7 @@ function sanityImage(image, width = 960) {
 			.fit("max")
 			.auto("format")}`,
 		caption: image.caption,
-		alt: image.alt,
+		alt: image.alt.replaceAll('"', "'"),
 	};
 }
 
