@@ -10,7 +10,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 
 	// Assets
-	eleventyConfig.addPassthroughCopy("styles");
+	eleventyConfig.addPassthroughCopy({ "src/styles": "/styles" });
 	eleventyConfig.addPassthroughCopy({ "src/_includes/assets": "/assets" });
 
 	return {
