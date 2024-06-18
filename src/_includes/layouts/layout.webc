@@ -26,8 +26,8 @@ title: Appnovation
 	<body>
 		<header class="global-header">
 			<appno-logo></appno-logo>
-			<a href="/search" aria-label="Search"
-				><svg
+			<a href="`/search`" aria-label="Search">
+				<svg
 					width="24"
 					height="24"
 					viewBox="0 0 24 24"
@@ -84,7 +84,7 @@ title: Appnovation
 					required />
 				<button type="submit">Subscribe</button>
 			</form>
-			<nav aria-label="Footer menu.">
+			<nav>
 				<div webc:for="menu of $data.global.footer.menus">
 					<h2 class="u-eyebrow" @text="menu.title"></h2>
 					<ul role="list">
