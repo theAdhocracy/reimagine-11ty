@@ -57,13 +57,13 @@ title: Appnovation
 			{% for card in block.cards %}
 			<section>
 				<h3>{{ card.title }}</h3>
-				<p id="`reveal-card-${card.id}`">{{ card.description }}</p>
+				<p id="reveal-card-{{ card.id }}">{{ card.desc }}</p>
 				<footer>
 					<button
 						type="button"
 						aria-label="Reveal description."
 						aria-expanded="false"
-						aria-controls="`reveal-card-${card.id}`">
+						aria-controls="reveal-card-{{ card.id }}">
 						<svg width="12" height="12" viewBox="0 0 12 12">
 							<path d="M6 0V6V12" stroke-width="1.52361" />
 							<path d="M12 6L-5.96046e-07 6" stroke-width="1.52361" />
