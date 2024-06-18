@@ -5,7 +5,7 @@
 		<slot></slot>
 	</ul>
 	<footer>
-		<a class="u-cta u-cta-highlight" :href="linkUrl" @text="linkText"></a>
+		<cta :@highlight="true" :@url="linkUrl" :@label="linkText"></cta>
 	</footer>
 </section>
 

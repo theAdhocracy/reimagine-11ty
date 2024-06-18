@@ -1,4 +1,10 @@
-<a class="cta" :href="`${url}`" @text="`${label}`" webc:root="override"></a>
+<a
+	class="cta"
+	:href="`${url}`"
+	webc:root="override"
+	:data-style="`${inverted ? 'inverted' : highlight ? 'highlight' : 'none'}`">
+	<slot><span @text="`${label ? label : null}`" webc:nokeep></span></slot>
+</a>
 
 <style>
 	.cta {
@@ -32,7 +38,8 @@
 		}
 	}
 
-	.cta-highlight {
+	.cta-highlight,
+	.cta[data-style="highlight"] {
 		--border-color: var(--c-highlight);
 		--bg-color: var(--c-highlight);
 		--text-color: var(--c-text-invert);
@@ -40,7 +47,8 @@
 		--lighten: 50%;
 	}
 
-	.cta-inverted {
+	.cta-inverted,
+	.cta[data-style="inverted"] {
 		--border-color: var(--c-text-invert);
 		--bg-color: var(--c-text-invert);
 		--active-bg-color: var(--c-text-invert);

@@ -1,10 +1,7 @@
 <aside class="banner" webc:root="override">
 	<h2 class="u-eyebrow" @text="`${title}`"></h2>
 	<p @text="`${copy}`"></p>
-	<a
-		class="u-cta u-cta-inverted"
-		:href="`${linkUrl}`"
-		@text="`${linkText}`"></a>
+	<cta :@label="linkText" :@url="linkUrl" :@inverted="{true}"></cta>
 </aside>
 
 <style>

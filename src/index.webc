@@ -11,11 +11,10 @@ title: Appnovation
 			@html="`${$data.homepage.title} <br> ${$data.homepage.subtitle}`"></h1>
 		<p @text="$data.homepage.copy"></p>
 		<div>
-			<a
-				class="u-cta"
-				href="link.url"
-				webc:for="link of $data.homepage.links"
-				@text="link.label"></a>
+			<cta
+				:@label="link.label"
+				:@url="link.url"
+				webc:for="link of $data.homepage.links"></cta>
 		</div>
 	</section>
 	<section class="highlight-grid">
